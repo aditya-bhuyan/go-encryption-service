@@ -23,7 +23,7 @@ jobs:
       run: go mod tidy
 
     - name: ✅ Build
-      run: go build -v ./cmd
+      run: go build -o encryption-service ./cmd
 
     - name: 🥪 Run Tests with Coverage
       run: |
