@@ -4,10 +4,11 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"go-encryption-service/internal/encryption"
-	"go-encryption-service/internal/keymanager"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/aditya-bhuyan/go-encryption-service/internal/encryption"
+	"github.com/aditya-bhuyan/go-encryption-service/internal/keymanager"
 
 	"github.com/aditya-bhuyan/go-encryption-service/pkg/logger"
 

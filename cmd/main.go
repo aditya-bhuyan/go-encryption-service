@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"go-encryption-service/internal/api"
+	"github.com/aditya-bhuyan/go-encryption-service/internal/api"
 
 	"github.com/aditya-bhuyan/go-encryption-service/pkg/logger"
 
