@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"go-encryption-service/internal/keymanager"
+	"github.com/aditya-bhuyan/go-encryption-service/internal/keymanager"
 
 	"github.com/gorilla/mux"
 )
