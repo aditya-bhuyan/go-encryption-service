@@ -6,9 +6,10 @@ import (
 	"fmt"
 	"go-encryption-service/internal/encryption"
 	"go-encryption-service/internal/keymanager"
-	"go-encryption-service/pkg/logger"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/aditya-bhuyan/go-encryption-service/pkg/logger"
 
 	"github.com/gorilla/mux"
 )
