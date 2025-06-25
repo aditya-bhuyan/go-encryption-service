@@ -1,0 +1,28 @@
+# Binaries
+/encryption-service
+
+# Build and test files
+*.out
+coverage.out
+*.test
+
+# Logs
+*.log
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+vendor/
+
+# Go modules cache
+/pkg/mod/
+
+# Docker
+*.tar

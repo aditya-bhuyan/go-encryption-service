@@ -1,0 +1,27 @@
+# Binaries
+/encryption-service
+
+# Git metadata
+.git
+.gitignore
+
+# Editor directories and settings
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# Test and coverage
+*.out
+*.test
+coverage.out
+
+# Misc
+.DS_Store
+Thumbs.db
+
+# Vendor and module cache
+vendor/
+pkg/

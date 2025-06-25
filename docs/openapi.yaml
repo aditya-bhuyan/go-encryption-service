@@ -1,0 +1,110 @@
+openapi: 3.0.3
+info:
+  title: Golang Encryption and Key Management API
+  description: RESTful API for managing encryption keys and encrypting/decrypting data
+  version: 1.0.0
+  contact:
+    name: Aditya Pratap Bhuyan
+    url: https://linkedin.com/in/adityabhuyan
+    email: aditya@example.com
+
+servers:
+  - url: http://localhost:8080
+    description: Local Development Server
+
+paths:
+  /api/key:
+    post:
+      summary: Create a new encryption key
+      responses:
+        '201':
+          description: Key successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  key_id:
+                    type: string
+  /api/key/{id}:
+    delete:
+      summary: Delete an encryption key
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the key to delete
+      responses:
+        '200':
+          description: Key successfully deleted
+        '404':
+          description: Key not found
+  /api/key/{id}/reset:
+    put:
+      summary: Reset (rotate) an encryption key
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the key to reset
+      responses:
+        '200':
+          description: Key successfully reset
+        '404':
+          description: Key not found
+  /api/encrypt:
+    post:
+      summary: Encrypt input data using a specified key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key_id:
+                  type: string
+                data:
+                  type: string
+      responses:
+        '200':
+          description: Data successfully encrypted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  encrypted:
+                    type: string
+        '404':
+          description: Key not found
+  /api/decrypt:
+    post:
+      summary: Decrypt input data using a specified key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key_id:
+                  type: string
+                data:
+                  type: string
+      responses:
+        '200':
+          description: Data successfully decrypted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  decrypted:
+                    type: string
+        '404':
+          description: Key not found
