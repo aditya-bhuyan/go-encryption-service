@@ -19,6 +19,13 @@ server:
 client:
 	go run $(CLIENT)
 
+test:
+	go test -v ./internal/... ./pkg/... ./cmd/... ./client/...
+
+coverage:
+	go test -v -coverprofile=coverage.out ./internal/... ./pkg/... ./cmd/... ./client/...
+	go tool cover -html=coverage.out
+
 docker-build:
 	docker build -t go-encryption-service .
 

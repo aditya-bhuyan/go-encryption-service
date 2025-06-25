@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"go-encryption-service/internal/encryption"
@@ -68,9 +69,10 @@ func EncryptData(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Encryption failed", http.StatusInternalServerError)
 		return
 	}
+	encoded := base64.StdEncoding.EncodeToString(encData)
 	logger.Info("Data encrypted with key: " + payload.KeyID)
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]string{"encrypted": string(encData)})
+	json.NewEncoder(w).Encode(map[string]string{"encrypted": encoded})
 }
 
 func DecryptData(w http.ResponseWriter, r *http.Request) {
@@ -83,7 +85,13 @@ func DecryptData(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Key not found", http.StatusNotFound)
 		return
 	}
-	decData, err := encryption.Decrypt([]byte(payload.Data), key)
+	decoded, err := base64.StdEncoding.DecodeString(payload.Data)
+	if err != nil {
+		logger.Error("Base64 decode failed: " + err.Error())
+		http.Error(w, "Invalid base64 data", http.StatusBadRequest)
+		return
+	}
+	decData, err := encryption.Decrypt(decoded, key)
 	if err != nil {
 		logger.Error("Decryption failed: " + err.Error())
 		http.Error(w, "Decryption failed", http.StatusInternalServerError)

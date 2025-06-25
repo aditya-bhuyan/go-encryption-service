@@ -27,8 +27,8 @@ jobs:
 
     - name: 🥪 Run Tests with Coverage
       run: |
-        go test -v -coverprofile=coverage.out ./...
-        go tool cover -func=coverage.out
+        go test -coverprofile=coverage.out ./internal/... ./pkg/... ./cmd/...   ./client/...
+        go tool cover -html=coverage.out
 
   docker-build:
     runs-on: ubuntu-latest
